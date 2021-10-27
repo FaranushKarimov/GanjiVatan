@@ -39,7 +39,12 @@ namespace persistence.Services
 
         public async Task<IEnumerable<CategoryResponce>> GetAllAsync()
         {
-            return await _context.Categories.Select(x => x.ToCategoryResponce()).ToListAsync();
+            var categories =  await _context.Categories.Where(x => x.ParentId == null).
+                                                        Select(x => x.ToCategoryResponce()).ToListAsync();
+            foreach( var item in categories)
+                item.SubCategories = await _context.Categories.Where(x => x.ParentId == item.Id).
+                                                        Select(x => x.ToCategoryResponce()).ToListAsync();
+            return categories;
         }
 
         
