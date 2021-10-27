@@ -8,6 +8,5 @@ namespace application.DTOs.Category
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public IEnumerable<CategoryResponce> SubCategories { get; set; }
     }
 }

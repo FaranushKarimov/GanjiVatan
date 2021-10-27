@@ -12,8 +12,7 @@ namespace application.Extensions
         {
             return new CreateCategoryResponce
             {
-                Id = category.Id,
-                Name = category.CategoryName
+                Id = category.Id
             };
         }
 
@@ -21,8 +20,7 @@ namespace application.Extensions
         {
             return new Category
             {
-                CategoryName = request.CategoryName,
-                ParentId = request.ParentId
+                CategoryName = request.CategoryName
             };
         }
 
@@ -31,7 +29,7 @@ namespace application.Extensions
             return new CategoryResponce
             {
                 Id = categoryname.Id,
-                CategoryName = categoryname.CategoryName,
+                CategoryName = categoryname.CategoryName
             };
         }
     }
