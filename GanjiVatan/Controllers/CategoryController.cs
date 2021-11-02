@@ -41,5 +41,14 @@ namespace GanjiVatan.Controllers
                 return NotFound();
             return Ok(deletedCategoryId);
         }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id,[FromBody] UpdateCategoryRequest request)
+        {
+            var category = await _categoryService.UpdateAsync(id, request);
+            if (category == null)
+                return NotFound();
+            return Ok(category);
+        }
     }
 }

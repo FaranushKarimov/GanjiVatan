@@ -35,6 +35,8 @@ namespace GanjiVatan
             var connectionString = Configuration.GetConnectionString("Default");
             services.AddDbContext<VatanDbContext>(option => option.UseSqlite(connectionString));
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IFileService, FileService>();
+            services.AddTransient<IPostSerivce, PostService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GanjiVatan", Version = "v1" });

@@ -47,6 +47,15 @@ namespace persistence.Services
             return categories;
         }
 
-        
+        public async Task<UpdateCategoryResponce> UpdateAsync(int id, UpdateCategoryRequest request)
+        {
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
+                return null;
+            request.ToCategory(ref category);
+            _context.Categories.Update(category);
+            await _context.SaveChangesAsync();
+            return category.ToUpdateCategoryResponce();
+        }
     }
 }
