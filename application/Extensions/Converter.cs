@@ -21,6 +21,7 @@ namespace application.Extensions
         public static Category ToCategory(this UpdateCategoryRequest request,ref Category category)
         {
             category.CategoryName = request.Name;
+            category.ParentId = request.ParentId;
             return category;
         }
 

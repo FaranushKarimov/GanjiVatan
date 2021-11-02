@@ -10,5 +10,6 @@ namespace application.Services
     public interface IPostSerivce
     {
         Task<CreatePostResponce> CreateAsync(CreatePostRequest request);
+        Task<int> DeleteByIdAsync(int id);
     }
 }

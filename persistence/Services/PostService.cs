@@ -29,5 +29,10 @@ namespace persistence.Services
             await _context.SaveChangesAsync();
             return post.ToCreatePostResponce();
         }
+
+        public Task<int> DeleteByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

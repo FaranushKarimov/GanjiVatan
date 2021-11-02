@@ -10,7 +10,7 @@ namespace application.Services
     {
         Task<CreateCategoryResponce> CreateAsync(CreateCategoryRequest request);
         Task<IEnumerable<CategoryResponce>> GetAllAsync();
-        Task<UpdateCategoryResponce> UpdateAsync(int id, UpdateCategoryRequest request);
+        Task<UpdateCategoryResponce> UpdateAsync(UpdateCategoryRequest request);
         Task<int> DeleteByIdAsync(int id);
     }
 }

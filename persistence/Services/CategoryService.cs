@@ -47,9 +47,9 @@ namespace persistence.Services
             return categories;
         }
 
-        public async Task<UpdateCategoryResponce> UpdateAsync(int id, UpdateCategoryRequest request)
+        public async Task<UpdateCategoryResponce> UpdateAsync(UpdateCategoryRequest request)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _context.Categories.FindAsync(request.Id);
             if (category == null)
                 return null;
             request.ToCategory(ref category);
