@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using domain.Entities;
 
 namespace persistence.Services
 {
@@ -39,12 +40,22 @@ namespace persistence.Services
 
         public async Task<IEnumerable<CategoryResponce>> GetAllAsync()
         {
-            var categories =  await _context.Categories.Where(x => x.ParentId == null).
-                                                        Select(x => x.ToCategoryResponce()).ToListAsync();
-            foreach( var item in categories)
-                item.SubCategories = await _context.Categories.Where(x => x.ParentId == item.Id).
-                                                        Select(x => x.ToCategoryResponce()).ToListAsync();
-            return categories;
+            var categories = await _context.Categories.ToListAsync();
+            var superCategories = categories.Where(x => x.ParentId == null).Select(x => x.ToCategoryResponce()).ToList();
+            foreach (var superCategory in superCategories)
+            {
+                await GetSubcategories(superCategory, categories);
+            }
+            return superCategories;
+        }
+        
+        private async Task GetSubcategories(CategoryResponce superCategory, IEnumerable<Category> categories)
+        {
+            superCategory.SubCategories = categories.Where(x => x.ParentId == superCategory.Id).Select(x => x.ToCategoryResponce()).ToList();
+            foreach (var category in superCategory.SubCategories)
+            {
+                await GetSubcategories(category, categories);
+            }
         }
 
         public async Task<UpdateCategoryResponce> UpdateAsync(int id, UpdateCategoryRequest request)
