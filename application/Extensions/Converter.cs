@@ -3,6 +3,7 @@ using application.DTOs.Post;
 using domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace application.Extensions
@@ -30,7 +31,7 @@ namespace application.Extensions
             return new Category
             {
                 CategoryName = request.CategoryName,
-                ParentId = request.ParentId
+                ParentId = request.ParentId != 0 ? request.ParentId : null
             };
         }
 
@@ -39,7 +40,7 @@ namespace application.Extensions
             return new CategoryResponce
             {
                 Id = categoryname.Id,
-                CategoryName = categoryname.CategoryName,
+                CategoryName = categoryname.CategoryName
             };
         }
 
