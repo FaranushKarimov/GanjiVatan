@@ -22,7 +22,7 @@ namespace application.Extensions
         public static Category ToCategory(this UpdateCategoryRequest request,ref Category category)
         {
             category.CategoryName = request.Name;
-            category.ParentId = request.ParentId;
+            category.ParentId = request.ParentId == 0 ? null : request.ParentId;
             return category;
         }
 
@@ -40,7 +40,8 @@ namespace application.Extensions
             return new CategoryResponce
             {
                 Id = categoryname.Id,
-                CategoryName = categoryname.CategoryName
+                CategoryName = categoryname.CategoryName,
+                SubCategories = categoryname.SubCategories.Select(x=>x.ToCategoryResponce())
             };
         }
 

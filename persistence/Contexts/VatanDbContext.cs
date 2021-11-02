@@ -21,6 +21,8 @@ namespace persistence.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<Category>().HasOne(x=>x.Parent).WithMany(x => x.SubCategories)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
