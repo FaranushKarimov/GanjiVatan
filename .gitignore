@@ -10,6 +10,9 @@
 *.userosscache
 *.sln.docstates
 GanjiVatan/app.db
+GanjiVatan/app.db-shm
+GanjiVatan/app.db-wal
+GanjiVatan/wwwroot/*
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

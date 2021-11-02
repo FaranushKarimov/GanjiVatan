@@ -20,8 +20,10 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreatePostRequest request)
+        public async Task<IActionResult> Create([FromForm] CreatePostRequest request)
         {
+            if (request.Image == null)
+                return BadRequest();
             var post = await _postService.CreateAsync(request);
             if (post.Id == 0)
                 return BadRequest();
