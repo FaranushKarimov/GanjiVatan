@@ -9,5 +9,6 @@ namespace application.Services
     public interface IFileService
     {
         Task<string> AddFileAsync(IFormFile file, string folderName);
+        void DeleteFile(string folderName);
     }
 }

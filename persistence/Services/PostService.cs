@@ -1,9 +1,11 @@
 ﻿using application.DTOs.Post;
 using application.Extensions;
 using application.Services;
+using Microsoft.EntityFrameworkCore;
 using persistence.Contexts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,9 +32,35 @@ namespace persistence.Services
             return post.ToCreatePostResponce();
         }
 
-        public Task<int> DeleteByIdAsync(int id)
+        public async Task<int> DeleteByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var post = await _context.Posts.FindAsync(id);
+            if (post == null)
+                return default;
+            _fileService.DeleteFile(post.ImagePath);
+            _context.Remove(post);
+            await _context.SaveChangesAsync();
+            return post.Id;
+        }
+
+        public async Task<IEnumerable<PostResponce>> GetAllAsync()
+        {
+            return await _context.Posts.Select(x => x.ToPostResponce()).ToListAsync();
+        }
+
+        public async Task<UpdatePostResponce> UpdateAsync(int id,UpdatePostRequest request)
+        {
+            var post = await _context.Posts.FindAsync(id);
+            if (request.Image != null)
+            {
+                _fileService.DeleteFile(post.ImagePath);
+                var imagePath = await _fileService.AddFileAsync(request.Image, nameof(domain.Entities.Post));
+                post.ImagePath = imagePath;
+            }
+            request.ToPost(ref post);
+            _context.Posts.Update(post);
+            await _context.SaveChangesAsync();
+            return post.ToUpdatePostResponce();
         }
     }
 }

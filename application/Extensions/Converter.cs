@@ -54,6 +54,24 @@ namespace application.Extensions
             };
         }
 
+        public static Post ToPost(this UpdatePostRequest request,ref Post post)
+        {
+            post.Title = request.Title;
+            post.Description = request.Description;
+            post.ImagePath = request.Image.FileName;
+            return post;
+        }
+
+        public static UpdatePostResponce ToUpdatePostResponce(this Post post)
+        {
+            return new UpdatePostResponce
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Description = post.Description,
+                ImagePath = post.ImagePath
+            };
+        }
         public static Post ToPost(this CreatePostRequest request)
         {
             return new Post
@@ -64,6 +82,16 @@ namespace application.Extensions
             };
         }
 
+        public static PostResponce ToPostResponce(this Post post)
+        {
+            return new PostResponce
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Description = post.Description,
+                ImagePath = post.ImagePath
+            };
+        }
         public static CreatePostResponce ToCreatePostResponce(this Post post)
         {
             return new CreatePostResponce

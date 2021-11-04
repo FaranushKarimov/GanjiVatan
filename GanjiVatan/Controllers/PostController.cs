@@ -29,5 +29,30 @@ namespace GanjiVatan.Controllers
                 return BadRequest();
             return Created("Post", post);
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedPostId = await _postService.DeleteByIdAsync(id);
+            if (deletedPostId == 0)
+                return NotFound();
+            return Ok(deletedPostId);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var posts = await _postService.GetAllAsync();
+            return Ok(posts);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdatePostRequest request)
+        {
+            var post = await _postService.UpdateAsync(id, request);
+            if (post == null)
+                return NotFound();
+            return Ok(post);
+        }
     }
 }

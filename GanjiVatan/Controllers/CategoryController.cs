@@ -42,10 +42,10 @@ namespace GanjiVatan.Controllers
             return Ok(deletedCategoryId);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateCategoryRequest request)
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id,[FromBody] UpdateCategoryRequest request)
         {
-            var category = await _categoryService.UpdateAsync(request);
+            var category = await _categoryService.UpdateAsync(id,request);
             if (category == null)
                 return NotFound();
             return Ok(category);
