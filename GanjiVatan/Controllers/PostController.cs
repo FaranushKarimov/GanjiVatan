@@ -1,5 +1,7 @@
 ﻿using application.DTOs.Post;
 using application.Services;
+using domain.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -40,6 +42,7 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
         public async Task<IActionResult> GetAll()
         {
             var posts = await _postService.GetAllAsync();

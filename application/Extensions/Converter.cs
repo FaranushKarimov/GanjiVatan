@@ -1,4 +1,5 @@
-﻿using application.DTOs.Category;
+﻿using application.DTOs.Banner;
+using application.DTOs.Category;
 using application.DTOs.Post;
 using domain.Entities;
 using System;
@@ -22,7 +23,7 @@ namespace application.Extensions
         public static Category ToCategory(this UpdateCategoryRequest request,ref Category category)
         {
             category.CategoryName = request.Name;
-            category.ParentId = request.ParentId == 0 ? null : request.ParentId;
+ //           category.ParentId = request.ParentId == 0 ? null : request.ParentId;
             return category;
         }
 
@@ -100,7 +101,25 @@ namespace application.Extensions
                 Title = post.Title,
                 Description = post.Description,
                 ImagePath = post.ImagePath
+            };
+        }
 
+        public static CreateBannerResponce ToCreateBannerResponce(this Banner banner)
+        {
+            return new CreateBannerResponce
+            {
+                Id = banner.Id,
+                ImagePath = banner.ImagePath,
+                PostId = banner.PostId
+            };
+        }
+
+        public static Banner ToBanner(this CreateBannerRequest request)
+        {
+            return new Banner
+            {
+                ImagePath = request.Image.FileName,
+                PostId = request.PostId
             };
         }
     }

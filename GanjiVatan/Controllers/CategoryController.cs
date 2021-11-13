@@ -1,5 +1,7 @@
 ﻿using application.DTOs.Category;
 using application.Services;
+using domain.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace GanjiVatan.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
     public class CategoryController : BaseController
     {
         private readonly ICategoryService _categoryService;
@@ -27,6 +30,7 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpGet]
+     //   [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
         public async Task<IActionResult> GetAll()
         {
             var categories = await _categoryService.GetAllAsync();

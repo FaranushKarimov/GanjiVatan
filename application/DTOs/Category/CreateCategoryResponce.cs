@@ -7,6 +7,6 @@ namespace application.DTOs.Category
     public class CreateCategoryResponce
     {
         public int Id { get; set; }
-        public string Name { get; set; } 
+        public string Name { get; set; }  
     }
 }
