@@ -11,5 +11,6 @@ namespace application.DTOs.Banner
         public int Id { get; set; }
         public string ImagePath { get; set; }
         public int? PostId { get; set; }
+        public string Description { get; set; }
     }
 }

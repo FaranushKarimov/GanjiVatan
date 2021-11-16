@@ -110,7 +110,8 @@ namespace application.Extensions
             {
                 Id = banner.Id,
                 ImagePath = banner.ImagePath,
-                PostId = banner.PostId
+                PostId = banner.PostId,
+                Description = banner.Description
             };
         }
 
@@ -119,7 +120,19 @@ namespace application.Extensions
             return new Banner
             {
                 ImagePath = request.Image.FileName,
-                PostId = request.PostId
+                PostId = request.PostId,
+                Description = request.Description
+            };
+        }
+
+        public static BannerResponce ToBannerResponce(this Banner banner)
+        {
+            return new BannerResponce
+            {
+                Id = banner.Id,
+                ImagePath = banner.ImagePath,
+                PostId = banner.PostId,
+                DescriptionBanner = banner.Description
             };
         }
     }

@@ -22,6 +22,7 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)] 
         public async Task<IActionResult> Create([FromForm] CreatePostRequest request)
         {
             if (request.Image == null)
@@ -42,7 +43,7 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpGet]
-        [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var posts = await _postService.GetAllAsync();

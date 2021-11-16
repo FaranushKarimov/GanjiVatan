@@ -39,9 +39,16 @@ namespace persistence.Services
                 Id = x.Id,
                 ImagePath = x.ImagePath,
                 PostId = x.Post.Id,
-                Title = x.Post.Title,
-                Description = x.Post.Description
+                DescriptionBanner = x.Description
+                //Title = x.Post.Title,
+                //Description = x.Post.Description
             }).ToListAsync();
+        }
+
+        public async Task<BannerResponce> GetbyIdAsync(int id)
+        {
+            var banner = await _context.Banners.FindAsync(id);
+            return banner?.ToBannerResponce();
         }
     }
 }

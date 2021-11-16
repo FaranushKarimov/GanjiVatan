@@ -11,6 +11,7 @@ namespace application.DTOs.Banner
     {
         public IFormFile Image { get; set; }
         public int? PostId { get; set; }
+        public string Description { get; set; }
        
     }
 }

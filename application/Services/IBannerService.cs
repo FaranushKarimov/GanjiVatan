@@ -10,6 +10,7 @@ namespace application.Services
     public interface IBannerService
     {
         Task<CreateBannerResponce> CreateAsync(CreateBannerRequest request);
-        Task<IEnumerable<BannerResponce>> GetAllAsync();     
+        Task<IEnumerable<BannerResponce>> GetAllAsync();
+        Task<BannerResponce> GetbyIdAsync(int id);
     }
 }

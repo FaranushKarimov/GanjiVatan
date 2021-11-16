@@ -12,3 +12,4 @@ namespace application.Services
         void DeleteFile(string folderName);
     }
 }
+ 

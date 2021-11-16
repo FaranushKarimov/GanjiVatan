@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace GanjiVatan.Controllers
 {
-    [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
     public class CategoryController : BaseController
     {
         private readonly ICategoryService _categoryService;
@@ -20,6 +19,7 @@ namespace GanjiVatan.Controllers
             _categoryService = categoryService;
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]CreateCategoryRequest request)
         {

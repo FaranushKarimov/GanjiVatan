@@ -34,5 +34,14 @@ namespace GanjiVatan.Controllers
             var banners = await _bannerService.GetAllAsync();
             return Ok(banners);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var banner = await _bannerService.GetbyIdAsync(id);
+            if (banner == null)
+                return NotFound();
+            return Ok(banner);
+        }
     }
 }

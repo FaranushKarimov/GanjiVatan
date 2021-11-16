@@ -60,7 +60,12 @@ namespace GanjiVatan
                 opt.User.AllowedUserNameCharacters +=
                     "éöóêåíãøùçõúôûâàïðîëäæýÿ÷ñìèòüáþÉÖÓÊÅÍÃØÙÇÕÚÔÛÂÀÏÐÎËÄÆÝß×ÑÌÈÒÜÁÞ ";
             });
-            services.AddCors();
+            services.AddCors(options => {
+                options.AddPolicy(name: "MyPolicy", policy =>
+                  policy.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
+            });
             services.AddSwaggerGen(c =>
             {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "GanjiVatan", Version = "v1" });
@@ -144,17 +149,17 @@ namespace GanjiVatan
             }
 
             //  app.UseHttpsRedirection();
-            app.UseCors(x => x
-                  .AllowAnyOrigin()
-                  .AllowAnyMethod()
-                  .AllowAnyHeader());
+            //app.UseCors(x => x
+            //      .AllowAnyOrigin()
+            //      .AllowAnyMethod()
+            //      .AllowAnyHeader());
             app.UseRouting();
 
             app.UseStaticFiles();
 
             app.UseAuthorization();
 
-          //  app.UseCors("MyPolicy");
+            app.UseCors("MyPolicy");
 
             app.UseEndpoints(endpoints =>
             {
