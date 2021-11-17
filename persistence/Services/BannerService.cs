@@ -31,6 +31,17 @@ namespace persistence.Services
             return bannerName.ToCreateBannerResponce();
         }
 
+        public async Task<int> DeleteByIdAsync(int id)
+        {
+            var banner = await _context.Banners.FindAsync(id);
+            if (banner == null)
+                return default;
+            _fileService.DeleteFile(banner.ImagePath);
+            _context.Remove(banner);
+            await _context.SaveChangesAsync();
+            return banner.Id;
+        }
+
         public async Task<IEnumerable<BannerResponce>> GetAllAsync()
         {
             return await _context.Banners.Include(x => x.Post).Select(x =>

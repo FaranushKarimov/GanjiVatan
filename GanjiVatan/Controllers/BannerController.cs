@@ -43,5 +43,14 @@ namespace GanjiVatan.Controllers
                 return NotFound();
             return Ok(banner);
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedbannerId = await _bannerService.DeleteByIdAsync(id);
+            if (deletedbannerId == 0)
+                return NotFound();
+            return Ok(deletedbannerId);
+        }
     }
 }
