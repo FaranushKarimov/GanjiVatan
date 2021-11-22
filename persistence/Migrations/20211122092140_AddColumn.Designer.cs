@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using persistence.Contexts;
 
 namespace persistence.Migrations
 {
     [DbContext(typeof(VatanDbContext))]
-    partial class VatanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211122092140_AddColumn")]
+    partial class AddColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,7 +179,7 @@ namespace persistence.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CategoryTJ")
+                    b.Property<string>("CategoryRU")
                         .HasMaxLength(15)
                         .HasColumnType("TEXT");
 

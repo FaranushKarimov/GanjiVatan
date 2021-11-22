@@ -9,7 +9,7 @@ namespace domain.Entities
     {
         public int Id { get; set; }
         [StringLength(15, MinimumLength = 1, ErrorMessage = "Название категории превышает диапазон")]
-        public string CategoryRU { get; set; }
+        public string CategoryTJ { get; set; }
 
         [StringLength(15, MinimumLength = 1, ErrorMessage = "Category name exceeds range")]
         public string CategoryEN { get; set; }

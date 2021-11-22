@@ -16,14 +16,14 @@ namespace application.Extensions
             return new CreateCategoryResponce
             {
                 Id = category.Id,
-                CategoryRU = category.CategoryRU,
+                CategoryTJ = category.CategoryTJ,
                 CategoryEN = category.CategoryEN
             };
         }
 
         public static Category ToCategory(this UpdateCategoryRequest request,ref Category category)
         {
-            category.CategoryRU = request.CategoryRU;
+            category.CategoryTJ = request.CategoryTJ;
             category.CategoryEN = request.CategoryEN;
  //           category.ParentId = request.ParentId == 0 ? null : request.ParentId;
             return category;
@@ -33,7 +33,7 @@ namespace application.Extensions
         {
             return new Category
             {
-                CategoryRU = request.CategoryRU,
+                CategoryTJ = request.CategoryTJ,
                 CategoryEN = request.CategoryEN,
                 ParentId = request.ParentId != 0 ? request.ParentId : null
             };
@@ -44,7 +44,7 @@ namespace application.Extensions
             return new CategoryResponce
             {
                 Id = categoryname.Id,
-                CategoryRU = categoryname.CategoryRU,
+                CategoryTJ = categoryname.CategoryTJ,
                 CategoryEN = categoryname.CategoryEN,
                 SubCategories = categoryname.SubCategories.Select(x=>x.ToCategoryResponce())
             };
@@ -55,7 +55,7 @@ namespace application.Extensions
             return new UpdateCategoryResponce
             {
                 Id = category.Id,
-                CategoryRU = category.CategoryRU,
+                CategoryTJ = category.CategoryTJ,
                 CategoryEN = category.CategoryEN
             };
         }
