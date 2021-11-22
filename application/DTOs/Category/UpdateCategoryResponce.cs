@@ -7,6 +7,7 @@ namespace application.DTOs.Category
     public class UpdateCategoryResponce
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string CategoryRU { get; set; }
+        public string CategoryEN { get; set; }
     }
 }

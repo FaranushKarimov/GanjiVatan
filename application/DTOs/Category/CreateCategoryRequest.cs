@@ -6,7 +6,8 @@ namespace application.DTOs.Category
 {
     public class CreateCategoryRequest
     {
-        public string CategoryName { get; set; }
+        public string CategoryRU { get; set; }
+        public string CategoryEN { get; set; }
         public int? ParentId { get; set; }
     }
 }

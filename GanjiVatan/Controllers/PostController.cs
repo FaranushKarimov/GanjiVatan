@@ -55,7 +55,7 @@ namespace GanjiVatan.Controllers
         {
             var post = await _postService.UpdateAsync(id, request);
             if (post == null)
-                return NotFound();
+                return NotFound();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
             return Ok(post);
         }
     }
