@@ -39,7 +39,7 @@ namespace persistence.Services
             _fileService.DeleteFile(banner.ImagePath);
             _context.Remove(banner);
             await _context.SaveChangesAsync();
-            return banner.Id;
+            return banner.Id; 
         }
 
         public async Task<IEnumerable<BannerResponce>> GetAllAsync()

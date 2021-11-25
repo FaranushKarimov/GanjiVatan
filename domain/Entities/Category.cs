@@ -16,6 +16,7 @@ namespace domain.Entities
         public int? ParentId { get; set; }
         public Category Parent { get; set; }
         public IEnumerable<Category> SubCategories { get; set; }
-        public IEnumerable<Description> Descriptions { get; set; }
+        //public IEnumerable<Description> Descriptions { get; set; }
+        public Description Description { get; set; }
     }
 }

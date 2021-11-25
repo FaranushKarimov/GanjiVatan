@@ -24,6 +24,7 @@ namespace persistence.Contexts
             builder.Entity<Category>().HasOne(x=>x.Parent).WithMany(x => x.SubCategories)
                 .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Post>().HasOne(b => b.Banner).WithOne(p => p.Post).HasForeignKey<Banner>(p => p.PostId);
+            builder.Entity<Category>().HasOne(d => d.Description).WithOne(c => c.Category).HasForeignKey<Description>(c => c.CategoryId);
         }
     }
 }

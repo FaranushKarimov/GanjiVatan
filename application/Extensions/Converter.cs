@@ -1,5 +1,6 @@
 ﻿using application.DTOs.Banner;
 using application.DTOs.Category;
+using application.DTOs.Description;
 using application.DTOs.Post;
 using domain.Entities;
 using System;
@@ -62,8 +63,10 @@ namespace application.Extensions
 
         public static Post ToPost(this UpdatePostRequest request,ref Post post)
         {
-            post.Title = request.Title;
-            post.Description = request.Description;
+            post.TitleTJ = request.TitleTJ;
+            post.TitleEN = request.TitleEN;
+            post.DescriptionTJ = request.DescriptionTJ;
+            post.DescriptionEN = request.DescriptionEN;
             post.ImagePath = request.Image.FileName;
             return post;
         }
@@ -73,8 +76,10 @@ namespace application.Extensions
             return new UpdatePostResponce
             {
                 Id = post.Id,
-                Title = post.Title,
-                Description = post.Description,
+                TitleTJ = post.TitleTJ,
+                TitleEN = post.TitleEN,
+                DescriptionTJ = post.DescriptionTJ,
+                DescriptionEN = post.DescriptionEN,
                 ImagePath = post.ImagePath
             };
         }
@@ -82,8 +87,10 @@ namespace application.Extensions
         {
             return new Post
             {
-                Title = request.Title,
-                Description = request.Description,
+                TitleTJ = request.TitleTJ,
+                TitleEN = request.TitleEN,
+                DescriptionTJ = request.DescriptionTJ,
+                DescriptionEN = request.DescriptionEN,
                 ImagePath = request.Image.FileName
             };
         }
@@ -93,8 +100,10 @@ namespace application.Extensions
             return new PostResponce
             {
                 Id = post.Id,
-                Title = post.Title,
-                Description = post.Description,
+                TitleTJ = post.TitleTJ,
+                TitleEN = post.TitleEN,
+                DescriptionTJ = post.DescriptionTJ,
+                DescriptionEN = post.DescriptionEN,
                 ImagePath = post.ImagePath
             };
         }
@@ -103,8 +112,10 @@ namespace application.Extensions
             return new CreatePostResponce
             {
                 Id = post.Id,
-                Title = post.Title,
-                Description = post.Description,
+                TitleTJ = post.TitleTJ,
+                TitleEN = post.TitleEN,
+                DescriptionTJ = post.DescriptionTJ,
+                DescriptionEN = post.DescriptionEN,
                 ImagePath = post.ImagePath
             };
         }
@@ -138,6 +149,27 @@ namespace application.Extensions
                 ImagePath = banner.ImagePath,
                 PostId = banner.PostId,
                 DescriptionBanner = banner.Description
+            };
+        }
+
+        public static Description ToDescription(this CreateDescriptionRequest request)
+        {
+            return new Description
+            {
+                TextEN = request.TextEN,
+                TextTJ = request.TextTJ,
+                CategoryId = request.CategoryId
+            };
+        }
+
+        public static CreateDescriptionResponce ToCreateDescriptionResponce(this Description description)
+        {
+            return new CreateDescriptionResponce
+            {
+                Id = description.Id,
+                TextEN = description.TextEN,
+                TextTJ = description.TextTJ,
+                CategoryId = description.CategoryId
             };
         }
     }

@@ -35,6 +35,8 @@ namespace GanjiVatan
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseIISIntegration();
+                    webBuilder.UseIIS();
                     webBuilder.UseStartup<Startup>();
                 });
     }

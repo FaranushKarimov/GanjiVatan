@@ -50,10 +50,11 @@ namespace GanjiVatan.Controllers
             return Ok(posts);
         }
 
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UpdatePostRequest request)
+        //[HttpPut("{id:int}")]
+        [HttpPut]
+        public async Task<IActionResult> Update([FromForm] UpdatePostRequest request)
         {
-            var post = await _postService.UpdateAsync(id, request);
+            var post = await _postService.UpdateAsync(request);
             if (post == null)
                 return NotFound();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
             return Ok(post);

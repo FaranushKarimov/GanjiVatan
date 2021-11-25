@@ -48,9 +48,9 @@ namespace persistence.Services
             return await _context.Posts.Select(x => x.ToPostResponce()).ToListAsync();
         }
 
-        public async Task<UpdatePostResponce> UpdateAsync(int id,UpdatePostRequest request)
+        public async Task<UpdatePostResponce> UpdateAsync(UpdatePostRequest request)
         {
-            var post = await _context.Posts.FindAsync(id);
+            var post = await _context.Posts.FindAsync(request.Id);
             if (request.Image != null)
             {
                 _fileService.DeleteFile(post.ImagePath);

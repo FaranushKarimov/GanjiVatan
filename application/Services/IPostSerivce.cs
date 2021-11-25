@@ -12,6 +12,6 @@ namespace application.Services
         Task<CreatePostResponce> CreateAsync(CreatePostRequest request);
         Task<int> DeleteByIdAsync(int id);
         Task<IEnumerable<PostResponce>> GetAllAsync();
-        Task<UpdatePostResponce> UpdateAsync(int id,UpdatePostRequest request);
+        Task<UpdatePostResponce> UpdateAsync(UpdatePostRequest request);
     }
 }

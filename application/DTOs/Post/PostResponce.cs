@@ -9,8 +9,10 @@ namespace application.DTOs.Post
     public class PostResponce
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string TitleTJ { get; set; }
+        public string TitleEN { get; set; }
+        public string DescriptionTJ { get; set; }
+        public string DescriptionEN { get; set; }
         public string ImagePath { get; set; }
     }
 }

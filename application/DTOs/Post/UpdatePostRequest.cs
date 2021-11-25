@@ -9,8 +9,11 @@ namespace application.DTOs.Post
 {
     public class UpdatePostRequest
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public int Id { get; set; }
+        public string TitleTJ { get; set; }
+        public string TitleEN { get; set; }
+        public string DescriptionTJ { get; set; }
+        public string DescriptionEN { get; set; }
         public IFormFile Image { get; set; }
     }
 }
