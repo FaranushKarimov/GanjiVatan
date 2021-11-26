@@ -45,7 +45,13 @@ namespace persistence.Services
 
         public async Task<IEnumerable<PostResponce>> GetAllAsync()
         {
-            return await _context.Posts.Select(x => x.ToPostResponce()).ToListAsync();
+            return await _context.Posts.OrderByDescending(x => x.Id).Select(x => x.ToPostResponce()).ToListAsync();
+        }
+
+        public async Task<PostResponce> GetByIdAsync(int id)
+        {
+            var post = await _context.Posts.FindAsync(id);
+            return post?.ToPostResponce();
         }
 
         public async Task<UpdatePostResponce> UpdateAsync(UpdatePostRequest request)

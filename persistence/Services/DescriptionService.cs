@@ -27,6 +27,16 @@ namespace persistence.Services
             return description.ToCreateDescriptionResponce();
         }
 
+        public async Task<int> DeleteByIdAsync(int id)
+        {
+            var description = await _context.Descriptions.FindAsync(id);
+            if (description == null)
+                return default;
+            _context.Remove(description);
+            await _context.SaveChangesAsync();
+            return description.Id;
+        }
+
         public async Task<IEnumerable<DescriptionResponce>> GetAllAsync()
         {
             return await _context.Descriptions.Include(x => x.Category).Select(x =>

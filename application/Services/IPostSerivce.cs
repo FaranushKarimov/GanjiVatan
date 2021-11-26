@@ -13,5 +13,6 @@ namespace application.Services
         Task<int> DeleteByIdAsync(int id);
         Task<IEnumerable<PostResponce>> GetAllAsync();
         Task<UpdatePostResponce> UpdateAsync(UpdatePostRequest request);
+        Task<PostResponce> GetByIdAsync(int id);
     }
 }

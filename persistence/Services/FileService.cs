@@ -13,14 +13,25 @@ namespace persistence.Services
         public async Task<string> AddFileAsync(IFormFile file, string folderName)
         {
             var path = Path.GetFullPath($"wwwroot/" + folderName);
+        //    string imgext = Path.GetExtension()
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             var filePath = $"/{DateTime.Now.Ticks}_{file.FileName}";
             await using var fs = new FileStream(path + filePath, FileMode.Create);
+            //var result = CheckFormatFile(file.FileName);
+            //if (result == false) return null;
             await file.CopyToAsync(fs);
             return $"/{folderName}{filePath}";
         }
 
+        //public bool CheckFormatFile(string filename)
+        //{
+        //    if(!filename.Contains(".png") || !filename.Contains(".jpg"))
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //}
 
         public void DeleteFile(string folderName)
         {

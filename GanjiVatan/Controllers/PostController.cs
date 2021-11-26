@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GanjiVatan.Controllers
 {
-
+   
     public class PostController : BaseController
     {
         private readonly IPostSerivce _postService;
@@ -57,6 +57,15 @@ namespace GanjiVatan.Controllers
             var post = await _postService.UpdateAsync(request);
             if (post == null)
                 return NotFound();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            return Ok(post);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var post = await _postService.GetByIdAsync(id);
+            if (post == null)
+                return NotFound();
             return Ok(post);
         }
     }
