@@ -50,7 +50,8 @@ namespace persistence.Services
                 Id = x.Id,
                 ImagePath = x.ImagePath,
                 PostId = x.Post.Id,
-                DescriptionBanner = x.Description
+                DescriptionENBanner = x.DescriptionEN,
+                DescriptionTJBanner = x.DescriptionTJ
                 //Title = x.Post.Title,
                 //Description = x.Post.Description
             }).ToListAsync();

@@ -127,7 +127,8 @@ namespace application.Extensions
                 Id = banner.Id,
                 ImagePath = banner.ImagePath,
                 PostId = banner.PostId,
-                Description = banner.Description
+                DescriptionBannerTJ = banner.DescriptionTJ,
+                DescriptionBannerEN = banner.DescriptionEN
             };
         }
 
@@ -137,7 +138,8 @@ namespace application.Extensions
             {
                 ImagePath = request.Image.FileName,
                 PostId = request.PostId,
-                Description = request.Description
+                DescriptionTJ = request.DescriptionBannerTJ,
+                DescriptionEN = request.DescriptionBannerEN
             };
         }
 
@@ -148,7 +150,8 @@ namespace application.Extensions
                 Id = banner.Id,
                 ImagePath = banner.ImagePath,
                 PostId = banner.PostId,
-                DescriptionBanner = banner.Description
+                DescriptionTJBanner = banner.DescriptionTJ,
+                DescriptionENBanner = banner.DescriptionEN
             };
         }
 
