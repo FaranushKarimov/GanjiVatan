@@ -40,7 +40,21 @@ namespace persistence.Services
 
         public async Task<IEnumerable<CategoryResponce>> GetAllAsync()
         {
-            var categories = await _context.Categories.ToListAsync();
+            //var categories = await _context.Categories.Include(x => x.Description).Include(x => x.SubCategories).Select(x => 
+            //new CategoryResponce
+            //{
+            //    Id = x.Id,
+            //    CategoryTJ = x.CategoryTJ,
+            //    CategoryEN = x.CategoryEN,
+            //    DescriptionId = x.Description.Id,
+            //    SubCategories = x.SubCategories.Select(x => new CategoryResponce {
+            //        Id = x.Id,
+            //        CategoryTJ = x.CategoryTJ,
+            //        CategoryEN = x.CategoryEN,
+            //        DescriptionId = x.Description.Id
+            //    })
+            //}).ToListAsync();
+            var categories = await _context.Categories.Include(x => x.Description).Include(x => x.SubCategories).ToListAsync();
             var superCategories = categories.Where(x => x.ParentId == null).ToList();
             foreach (var superCategory in superCategories)
             {

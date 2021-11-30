@@ -57,13 +57,13 @@ namespace persistence.Services
         public async Task<UpdatePostResponce> UpdateAsync(UpdatePostRequest request)
         {
             var post = await _context.Posts.FindAsync(request.Id);
+            request.ToPost(ref post);
             if (request.Image != null)
             {
                 _fileService.DeleteFile(post.ImagePath);
                 var imagePath = await _fileService.AddFileAsync(request.Image, nameof(domain.Entities.Post));
                 post.ImagePath = imagePath;
             }
-            request.ToPost(ref post);
             _context.Posts.Update(post);
             await _context.SaveChangesAsync();
             return post.ToUpdatePostResponce();

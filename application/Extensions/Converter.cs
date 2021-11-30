@@ -47,6 +47,7 @@ namespace application.Extensions
                 Id = categoryname.Id,
                 CategoryTJ = categoryname.CategoryTJ,
                 CategoryEN = categoryname.CategoryEN,
+                DescriptionId = categoryname.Description.Id,
                 SubCategories = categoryname.SubCategories.Select(x=>x.ToCategoryResponce())
             };
         }
@@ -67,7 +68,6 @@ namespace application.Extensions
             post.TitleEN = request.TitleEN;
             post.DescriptionTJ = request.DescriptionTJ;
             post.DescriptionEN = request.DescriptionEN;
-            post.ImagePath = request.Image.FileName;
             return post;
         }
 

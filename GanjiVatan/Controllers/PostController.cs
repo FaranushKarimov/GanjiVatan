@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GanjiVatan.Controllers
 {
-   
+    [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
     public class PostController : BaseController
     {
         private readonly IPostSerivce _postService;
@@ -22,7 +22,7 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpPost]
-        [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)] 
+        //[Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)] 
         public async Task<IActionResult> Create([FromForm] CreatePostRequest request)
         {
             if (request.Image == null)
@@ -52,6 +52,7 @@ namespace GanjiVatan.Controllers
 
         //[HttpPut("{id:int}")]
         [HttpPut]
+        //[Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
         public async Task<IActionResult> Update([FromForm] UpdatePostRequest request)
         {
             var post = await _postService.UpdateAsync(request);
