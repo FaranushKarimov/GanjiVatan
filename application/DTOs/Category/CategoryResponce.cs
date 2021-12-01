@@ -9,7 +9,7 @@ namespace application.DTOs.Category
         public int Id { get; set; }
         public string CategoryTJ { get; set; }
         public string CategoryEN { get; set; }
-        public int DescriptionId { get; set; }
+        public int? DescriptionId { get; set; }
         public IEnumerable<CategoryResponce> SubCategories { get; set; }
     }
 }

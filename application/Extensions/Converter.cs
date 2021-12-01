@@ -47,7 +47,7 @@ namespace application.Extensions
                 Id = categoryname.Id,
                 CategoryTJ = categoryname.CategoryTJ,
                 CategoryEN = categoryname.CategoryEN,
-                DescriptionId = categoryname.Description.Id,
+                DescriptionId = categoryname.Description?.Id,
                 SubCategories = categoryname.SubCategories.Select(x=>x.ToCategoryResponce())
             };
         }
@@ -168,6 +168,18 @@ namespace application.Extensions
         public static CreateDescriptionResponce ToCreateDescriptionResponce(this Description description)
         {
             return new CreateDescriptionResponce
+            {
+                Id = description.Id,
+                TextEN = description.TextEN,
+                TextTJ = description.TextTJ,
+                CategoryId = description.CategoryId
+            };
+
+        }
+
+        public static DescriptionResponce ToDescriptionResponce(this Description description)
+        {
+            return new DescriptionResponce
             {
                 Id = description.Id,
                 TextEN = description.TextEN,

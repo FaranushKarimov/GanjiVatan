@@ -48,5 +48,12 @@ namespace persistence.Services
                 CategoryId = x.Category.Id
             }).ToListAsync();
         }
+
+        public async Task<DescriptionResponce> GetById(int id)
+        {
+            var description = await _context.Descriptions.FindAsync(id);
+            return description?.ToDescriptionResponce();
+        }
     }
 }
+ 

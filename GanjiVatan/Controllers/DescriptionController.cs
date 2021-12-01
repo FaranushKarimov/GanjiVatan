@@ -33,5 +33,14 @@ namespace GanjiVatan.Controllers
             var descriptions = await _descriptionService.GetAllAsync();
             return Ok(descriptions);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var description = await _descriptionService.GetById(id);
+            if (description == null)
+                return NotFound();
+            return Ok(description);
+        }
     }
 }
