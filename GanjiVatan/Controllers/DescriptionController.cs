@@ -1,5 +1,6 @@
 ﻿using application.DTOs.Description;
 using application.Services;
+using domain.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,6 +18,8 @@ namespace GanjiVatan.Controllers
             _descriptionService = descriptionService;
         }
 
+
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateDescriptionRequest request)
         {
@@ -35,9 +38,28 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
             var description = await _descriptionService.GetById(id);
+            if (description == null)
+                return NotFound();
+            return Ok(description);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedDescriptionId = await _descriptionService.DeleteByIdAsync(id);
+            if (deletedDescriptionId == 0)
+                return NotFound();
+            return Ok(deletedDescriptionId);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id,[FromBody]UpdateDescriptionRequest request)
+        {
+            var description = await _descriptionService.UpdateAsync(id, request);
             if (description == null)
                 return NotFound();
             return Ok(description);

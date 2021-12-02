@@ -62,5 +62,16 @@ namespace persistence.Services
             var banner = await _context.Banners.FindAsync(id);
             return banner?.ToBannerResponce();
         }
+
+        public async Task<UpdateBannerResponce> UpdateAsync(int id, UpdateBannerRequest request)
+        {
+            var banner = await _context.Banners.FindAsync(id);
+            if (banner == null)
+                return null;
+            request.ToBanner(ref banner);
+            _context.Banners.Update(banner);
+            await _context.SaveChangesAsync();
+            return banner.ToUpdateBannerResponce();
+        }
     }
 }

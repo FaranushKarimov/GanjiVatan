@@ -1,5 +1,6 @@
 ﻿using application.DTOs.Banner;
 using application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,6 +30,7 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var banners = await _bannerService.GetAllAsync();
@@ -36,6 +38,7 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
             var banner = await _bannerService.GetbyIdAsync(id);
@@ -51,6 +54,15 @@ namespace GanjiVatan.Controllers
             if (deletedbannerId == 0)
                 return NotFound();
             return Ok(deletedbannerId);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id,[FromBody]UpdateBannerRequest request)
+        {
+            var banner = await _bannerService.UpdateAsync(id, request);
+            if (banner == null)
+                return NotFound();
+            return Ok(banner);
         }
     }
 }

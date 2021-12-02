@@ -54,6 +54,17 @@ namespace persistence.Services
             var description = await _context.Descriptions.FindAsync(id);
             return description?.ToDescriptionResponce();
         }
+
+        public async Task<UpdateDescriptionResponce> UpdateAsync(int id,UpdateDescriptionRequest request)
+        {
+            var description = await _context.Descriptions.FindAsync(id);
+            if (description == null)
+                return null;
+            request.ToDescription(ref description);
+            _context.Descriptions.Update(description);
+            await _context.SaveChangesAsync();
+            return description.ToUpdateDescriptionResponce();
+        }
     }
 }
  

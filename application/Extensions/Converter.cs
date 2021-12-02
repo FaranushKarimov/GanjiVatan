@@ -155,6 +155,24 @@ namespace application.Extensions
             };
         }
 
+        public static UpdateBannerResponce ToUpdateBannerResponce(this Banner banner)
+        {
+            return new UpdateBannerResponce
+            {
+                Id = banner.Id,
+                DescriptionBannerTJ = banner.DescriptionTJ,
+                DescriptionBannerEN = banner.DescriptionEN,
+                ImagePath = banner.ImagePath
+            };
+        }
+
+        public static Banner ToBanner(this UpdateBannerRequest request,ref Banner banner)
+        {
+            banner.DescriptionTJ = request.DescriptionBannerTJ;
+            banner.DescriptionEN = request.DescriptionBannerEN;
+            return banner;
+        }
+
         public static Description ToDescription(this CreateDescriptionRequest request)
         {
             return new Description
@@ -187,5 +205,25 @@ namespace application.Extensions
                 CategoryId = description.CategoryId
             };
         }
+
+        public static UpdateDescriptionResponce ToUpdateDescriptionResponce(this Description description)
+        {
+            return new UpdateDescriptionResponce
+            {
+                Id = description.Id,
+                TextTJ = description.TextTJ,
+                TextEN = description.TextEN,
+                CategoryId = description.CategoryId
+            };
+        }
+        public static Description ToDescription(this UpdateDescriptionRequest request,ref Description description)
+        {
+            description.TextTJ = request.TextTJ;
+            description.TextEN = request.TextEN;
+            description.CategoryId = request.CategoryId;
+            return description;
+        }
+
+
     }
 }

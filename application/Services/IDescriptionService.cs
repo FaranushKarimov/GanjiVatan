@@ -12,6 +12,7 @@ namespace application.Services
         Task<CreateDescriptionResponce> CreateAsync(CreateDescriptionRequest request);
         Task<IEnumerable<DescriptionResponce>> GetAllAsync();
         Task<int> DeleteByIdAsync(int id);
+        Task<UpdateDescriptionResponce> UpdateAsync(int id,UpdateDescriptionRequest request);
         Task<DescriptionResponce> GetById(int id);
     }
 }

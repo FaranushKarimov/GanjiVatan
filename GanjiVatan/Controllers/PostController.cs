@@ -62,6 +62,7 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
             var post = await _postService.GetByIdAsync(id);

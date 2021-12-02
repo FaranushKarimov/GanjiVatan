@@ -13,5 +13,6 @@ namespace application.Services
         Task<int> DeleteByIdAsync(int id);
         Task<IEnumerable<BannerResponce>> GetAllAsync();
         Task<BannerResponce> GetbyIdAsync(int id);
+        Task<UpdateBannerResponce> UpdateAsync(int id, UpdateBannerRequest request);
     }
 }
