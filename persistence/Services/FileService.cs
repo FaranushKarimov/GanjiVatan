@@ -17,6 +17,7 @@ namespace persistence.Services
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             var filePath = $"/{DateTime.Now.Ticks}_{file.FileName}";
+            
             await using var fs = new FileStream(path + filePath, FileMode.Create);
             //var result = CheckFormatFile(file.FileName);
             //if (result == false) return null;

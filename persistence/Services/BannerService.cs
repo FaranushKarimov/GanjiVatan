@@ -23,12 +23,22 @@ namespace persistence.Services
         }
         public async Task<CreateBannerResponce> CreateAsync(CreateBannerRequest request)
         {
-            var bannerName = request.ToBanner();
+            var banner = _context.Banners.FirstOrDefault(x => x.PostId == request.PostId);
+            if(banner != null)
+            {
+                banner.ImagePath = await _fileService.AddFileAsync(request.Image, nameof(domain.Entities.Banner));
+                banner.PostId = request.PostId;
+                banner.DescriptionEN = request.DescriptionBannerEN;
+                banner.DescriptionTJ = request.DescriptionBannerTJ;
+                await _context.SaveChangesAsync();
+                return banner.ToCreateBannerResponce();
+            }
+            banner = request.ToBanner();
             var imagePath = await _fileService.AddFileAsync(request.Image, nameof(domain.Entities.Banner));
-            bannerName.ImagePath = imagePath;
-            await _context.Banners.AddAsync(bannerName);
+            banner.ImagePath = imagePath;
+            await _context.Banners.AddAsync(banner);
             await _context.SaveChangesAsync();
-            return bannerName.ToCreateBannerResponce();
+            return banner.ToCreateBannerResponce();
         }
 
         public async Task<int> DeleteByIdAsync(int id)
