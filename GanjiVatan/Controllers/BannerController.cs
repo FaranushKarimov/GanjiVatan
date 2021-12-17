@@ -57,7 +57,7 @@ namespace GanjiVatan.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update(int id,[FromBody]UpdateBannerRequest request)
+        public async Task<IActionResult> Update(int id,[FromForm]UpdateBannerRequest request)
         {
             var banner = await _bannerService.UpdateAsync(id, request);
             if (banner == null)

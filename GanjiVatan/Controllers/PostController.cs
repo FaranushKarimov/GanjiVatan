@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GanjiVatan.Controllers
 {
-    [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
+    
     public class PostController : BaseController
     {
         private readonly IPostSerivce _postService;
@@ -21,6 +21,7 @@ namespace GanjiVatan.Controllers
             _postService = postService;
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)]
         [HttpPost]
         //[Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)] 
         public async Task<IActionResult> Create([FromForm] CreatePostRequest request)

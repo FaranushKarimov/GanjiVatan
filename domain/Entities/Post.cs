@@ -12,8 +12,6 @@ namespace domain.Entities
         public string DescriptionTJ { get; set; }
         public string DescriptionEN { get; set; }
         public string ImagePath { get; set; }
-        public int ImageWidth { get; set; }
-        public int ImageHeight { get; set; }
         public Banner Banner { get; set; }
     }
 }

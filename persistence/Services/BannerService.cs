@@ -76,9 +76,16 @@ namespace persistence.Services
         public async Task<UpdateBannerResponce> UpdateAsync(int id, UpdateBannerRequest request)
         {
             var banner = await _context.Banners.FindAsync(id);
-            if (banner == null)
-                return null;
             request.ToBanner(ref banner);
+            if (request.Image != null)
+            {
+                _fileService.DeleteFile(banner.ImagePath);
+                var imagePath = await _fileService.AddFileAsync(request.Image, nameof(domain.Entities.Banner));
+                banner.ImagePath = imagePath;
+            }
+            //if (banner == null)
+            //    return null;
+            //request.ToBanner(ref banner);
             _context.Banners.Update(banner);
             await _context.SaveChangesAsync();
             return banner.ToUpdateBannerResponce();
