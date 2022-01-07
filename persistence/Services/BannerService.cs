@@ -23,7 +23,7 @@ namespace persistence.Services
         }
         public async Task<CreateBannerResponce> CreateAsync(CreateBannerRequest request)
         {
-            var banner = _context.Banners.FirstOrDefault(x => x.PostId == request.PostId);
+            var banner = _context.Banners.FirstOrDefault(x => x.PostId != null && x.PostId == request.PostId);
             if(banner != null)
             {
                 banner.ImagePath = await _fileService.AddFileAsync(request.Image, nameof(domain.Entities.Banner));
