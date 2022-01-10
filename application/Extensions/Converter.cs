@@ -244,7 +244,7 @@ namespace application.Extensions
                 TitleTJ = thematicAreaPost.TitleTJ,
                 TitleEN = thematicAreaPost.TitleEN,
                 DescriptionTJ = thematicAreaPost.DescriptionTJ,
-                DescriptionEN = thematicAreaPost.DescriptionEN
+                DescriptionEN = thematicAreaPost.DescriptionEN,
             };
         }
 

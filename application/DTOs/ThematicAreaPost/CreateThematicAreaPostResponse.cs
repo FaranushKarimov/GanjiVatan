@@ -13,6 +13,7 @@ namespace application.DTOs.ThematicAreaPost
         public string TitleEN { get; set; }
         public string DescriptionTJ { get; set; }
         public string DescriptionEN { get; set; }
+        public List<FileResponse> Files { get; set; }
 
     }
 }
