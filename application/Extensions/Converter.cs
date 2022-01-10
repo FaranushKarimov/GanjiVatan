@@ -2,6 +2,7 @@
 using application.DTOs.Category;
 using application.DTOs.Description;
 using application.DTOs.Post;
+using application.DTOs.ThematicAreaPost;
 using domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -91,7 +92,8 @@ namespace application.Extensions
                 TitleEN = request.TitleEN,
                 DescriptionTJ = request.DescriptionTJ,
                 DescriptionEN = request.DescriptionEN,
-                ImagePath = request.Image.FileName
+                ImagePath = request.Image.FileName,
+                //AdditionalImagePath = request.AdditionalImages.Select(x => x.FileName).ToList()
             };
         }
 
@@ -224,6 +226,27 @@ namespace application.Extensions
             return description;
         }
 
+        public static ThematicAreaPost ToThematicAreaPost(this CreateThematicAreaPostRequest request)
+        {
+            return new ThematicAreaPost
+            {
+                TitleEN = request.TitleEN,
+                TitleTJ = request.TitleTJ,
+                DescriptionEN = request.DescriptionEN,
+                DescriptionTJ = request.DescriptionTJ
+            };
+        }
+        public static CreateThematicAreaPostResponse ToCreateThematicAreaPostResponse(this ThematicAreaPost thematicAreaPost)
+        {
+            return new CreateThematicAreaPostResponse
+            {
+                Id = thematicAreaPost.Id,
+                TitleTJ = thematicAreaPost.TitleTJ,
+                TitleEN = thematicAreaPost.TitleEN,
+                DescriptionTJ = thematicAreaPost.DescriptionTJ,
+                DescriptionEN = thematicAreaPost.DescriptionEN
+            };
+        }
 
     }
 }

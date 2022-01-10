@@ -46,6 +46,7 @@ namespace GanjiVatan
             services.AddTransient<IBannerService, BannerService>();
             services.AddTransient<IDescriptionService, DescriptionService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IThematicAreaPostService, ThematicAreaPostService>();
             var connectionString = Configuration.GetConnectionString("Default");
             services.AddDbContext<VatanDbContext>(option => option.UseSqlite(connectionString));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<VatanDbContext>();

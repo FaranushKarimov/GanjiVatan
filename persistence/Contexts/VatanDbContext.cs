@@ -18,6 +18,8 @@ namespace persistence.Contexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<Description> Descriptions { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<File> Files { get; set; }
+        public DbSet<ThematicAreaPost> ThematicAreaPosts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

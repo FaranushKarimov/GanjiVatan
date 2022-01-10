@@ -26,6 +26,10 @@ namespace persistence.Services
         {
             var post = request.ToPost();
             var imagePath = await _fileService.AddFileAsync(request.Image, nameof(domain.Entities.Post));
+            //for (int i = 0; i < request.AdditionalImages.Count(); ++i)
+            //{
+            //    post.AdditionalImagePath[i] = await _fileService.AddFileAsync(request.AdditionalImages[i], nameof(domain.Entities.Post));
+            //}
             post.ImagePath = imagePath;
             await _context.Posts.AddAsync(post);
             await _context.SaveChangesAsync();
@@ -46,6 +50,11 @@ namespace persistence.Services
         public async Task<IEnumerable<PostResponce>> GetAllAsync()
         {
             return await _context.Posts.OrderByDescending(x => x.Id).Select(x => x.ToPostResponce()).ToListAsync();
+        }
+
+        public async Task<int> GetAllPostsCount()
+        {
+            return await _context.Posts.CountAsync();
         }
 
         public async Task<PostResponce> GetByIdAsync(int id)

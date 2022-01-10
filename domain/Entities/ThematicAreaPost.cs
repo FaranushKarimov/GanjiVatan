@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace application.DTOs.Post
+namespace domain.Entities
 {
-    public class CreatePostRequest
+    public class ThematicAreaPost
     {
+        public int Id { get; set; }
         public string TitleTJ { get; set; }
         public string TitleEN { get; set; }
         public string DescriptionTJ { get; set; }
         public string DescriptionEN { get; set; }
-        public IFormFile Image { get; set; }
-        public List<IFormFile> AdditionalImages { get; set; }
+        public List<File> Files { get; set; }
+
     }
 }

@@ -10,7 +10,7 @@ namespace application.Services
     {
         Task<string> AddFileAsync(IFormFile file, string folderName);
         void DeleteFile(string folderName);
-        //bool CheckFormatFile(string filename);
+
     }
 }
  

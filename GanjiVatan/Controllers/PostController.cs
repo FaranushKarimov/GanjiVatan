@@ -26,6 +26,14 @@ namespace GanjiVatan.Controllers
         //[Authorize(AuthenticationSchemes = "Bearer", Roles = Role.ADMIN)] 
         public async Task<IActionResult> Create([FromForm] CreatePostRequest request)
         {
+            //if(await _postService.GetAllPostsCount() >= 6)
+            //{
+            //    return BadRequest("Больше 6 тематических постов добавлять нельзя");
+            //}
+            //if (request.AdditionalImages.Count() > 4)
+            //{
+            //    return BadRequest("Too many images (more than 4)");
+            //}
             if (request.Image == null)
                 return BadRequest();
             var post = await _postService.CreateAsync(request);

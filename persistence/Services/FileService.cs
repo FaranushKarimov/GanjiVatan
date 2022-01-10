@@ -25,6 +25,8 @@ namespace persistence.Services
             return $"/{folderName}{filePath}";
         }
 
+
+
         //public bool CheckFormatFile(string filename)
         //{
         //    if(!filename.Contains(".png") || !filename.Contains(".jpg"))
@@ -41,5 +43,6 @@ namespace persistence.Services
                 File.Delete(path);
            // throw new NotImplementedException();
         }
+
     }
 }
