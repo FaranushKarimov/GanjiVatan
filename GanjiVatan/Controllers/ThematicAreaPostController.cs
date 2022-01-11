@@ -1,5 +1,6 @@
 ﻿using application.DTOs.ThematicAreaPost;
 using application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -32,6 +33,14 @@ namespace GanjiVatan.Controllers
             if (thematicAreaPost.Id == 0)
                 return BadRequest();
             return Ok(thematicAreaPost);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAll()
+        {
+            var themticalAreaPosts = await _thematicAreaPostService.GetAllAsync();
+            return Ok(themticalAreaPosts);
         }
     }
 }

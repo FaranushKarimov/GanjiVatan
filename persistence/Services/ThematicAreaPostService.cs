@@ -46,7 +46,7 @@ namespace persistence.Services
             return thematicalAreaPost.ToCreateThematicAreaPostResponse();
         }
 
-        public async Task<List<ThematicAreaPostResponse>> GetAllAsync()
+        public async Task<IEnumerable<ThematicAreaPostResponse>> GetAllAsync()
         {
            return await _context.ThematicAreaPosts.Include(x => x.Files).Select(x =>
            new ThematicAreaPostResponse
@@ -61,7 +61,7 @@ namespace persistence.Services
                    Id = x.Id,
                    FilePath = x.Path,
                    IsMain = x.IsMain
-               })
+               }).ToList()
            }).ToListAsync();
         }
 

@@ -11,6 +11,6 @@ namespace application.Services
     {
         Task<CreateThematicAreaPostResponse> CreateAsync(CreateThematicAreaPostRequest request);
         Task<int> GetAllThematicAreaPostCount();
-        Task<List<ThematicAreaPostResponse>> GetAllAsync();
+        Task<IEnumerable<ThematicAreaPostResponse>> GetAllAsync();
     }
 }
