@@ -10,5 +10,7 @@ namespace application.Services
     public interface IThematicAreaPostService
     {
         Task<CreateThematicAreaPostResponse> CreateAsync(CreateThematicAreaPostRequest request);
+        Task<int> GetAllThematicAreaPostCount();
+        Task<List<ThematicAreaPostResponse>> GetAllAsync();
     }
 }

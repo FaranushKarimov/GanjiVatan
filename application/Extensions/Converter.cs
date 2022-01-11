@@ -238,15 +238,40 @@ namespace application.Extensions
         }
         public static CreateThematicAreaPostResponse ToCreateThematicAreaPostResponse(this ThematicAreaPost thematicAreaPost)
         {
-            return new CreateThematicAreaPostResponse
+            var result = new CreateThematicAreaPostResponse()
             {
                 Id = thematicAreaPost.Id,
                 TitleTJ = thematicAreaPost.TitleTJ,
                 TitleEN = thematicAreaPost.TitleEN,
                 DescriptionTJ = thematicAreaPost.DescriptionTJ,
-                DescriptionEN = thematicAreaPost.DescriptionEN,
+                DescriptionEN = thematicAreaPost.DescriptionEN
             };
+            var images = new List<FileResponse>();
+
+            for (int i = 0; i < thematicAreaPost.Files.Count(); ++i)
+            {
+                var cur = new FileResponse()
+                {
+                    Id = thematicAreaPost.Files[i].Id,
+                    IsMain = thematicAreaPost.Files[i].IsMain,
+                    FilePath = thematicAreaPost.Files[i].Path
+                };
+                images.Add(cur);
+            }
+            result.Files = images;
+            return result;
         }
 
+        public static ThematicAreaPostResponse ToThematicAreaPost(ThematicAreaPost thematicAreaPost)
+        {
+            return new ThematicAreaPostResponse
+            {
+                Id = thematicAreaPost.Id,
+                TitleEN = thematicAreaPost.TitleEN,
+                TitleTJ = thematicAreaPost.TitleTJ,
+                DescriptionEN = thematicAreaPost.DescriptionEN,
+                DescriptionTJ = thematicAreaPost.DescriptionTJ
+            };
+        }
     }
 }

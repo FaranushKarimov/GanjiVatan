@@ -1,6 +1,8 @@
 ﻿using application.DTOs.ThematicAreaPost;
 using application.Extensions;
 using application.Services;
+using domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using persistence.Contexts;
 using System;
 using System.Collections.Generic;
@@ -22,14 +24,51 @@ namespace persistence.Services
         public async Task<CreateThematicAreaPostResponse> CreateAsync(CreateThematicAreaPostRequest request)
         {
             var thematicalAreaPost = request.ToThematicAreaPost();
-            var thematicalAreaPostImage = new List<FileResponse>()
+            var thematicalAreaPostImage = new List<File>()
             {
                 new()
                 {
-                    //FilePath = await _fileService.AddFileAsync(request.MainImage,FileTypes.)
+                    Path = await _fileService.AddFileAsync(request.MainImage, nameof(domain.Entities.ThematicAreaPost)),
+                    IsMain = true
                 }
             };
+            if(request.Images != null)
+            {
+                thematicalAreaPostImage.AddRange(request.Images.Select(x => new File
+                {
+                    Path = _fileService.AddFileAsync(x,nameof(domain.Entities.ThematicAreaPost)).Result,
+                    IsMain = false
+                }));
+            }
+            thematicalAreaPost.Files = thematicalAreaPostImage;
+            await _context.ThematicAreaPosts.AddAsync(thematicalAreaPost);
+            await _context.SaveChangesAsync();
             return thematicalAreaPost.ToCreateThematicAreaPostResponse();
         }
+
+        public async Task<List<ThematicAreaPostResponse>> GetAllAsync()
+        {
+           return await _context.ThematicAreaPosts.Include(x => x.Files).Select(x =>
+           new ThematicAreaPostResponse
+           {
+               Id = x.Id,
+               TitleEN = x.TitleEN,
+               TitleTJ = x.TitleTJ,
+               DescriptionEN = x.DescriptionEN,
+               DescriptionTJ = x.DescriptionTJ,
+               Files = x.Files.Select(x => new FileResponse
+               {
+                   Id = x.Id,
+                   FilePath = x.Path,
+                   IsMain = x.IsMain
+               })
+           }).ToListAsync();
+        }
+
+        public async Task<int> GetAllThematicAreaPostCount()
+        {
+            return await _context.ThematicAreaPosts.CountAsync();
+        }
+
     }
 }
