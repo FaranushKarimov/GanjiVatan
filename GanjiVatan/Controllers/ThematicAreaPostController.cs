@@ -21,10 +21,10 @@ namespace GanjiVatan.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreateThematicAreaPostRequest request)
         {
-            if (await _thematicAreaPostService.GetAllThematicAreaPostCount() > 6)
+            if (await _thematicAreaPostService.GetAllThematicAreaPostCount() >= 6)
                 return BadRequest("Больше 6 тематических постов добавлять нельзя");
-            if (request.Images.Count() > 4)
-                return BadRequest("Максимум 4 фотографии");
+            if (request.Images.Count() != 4)
+                return BadRequest("Больше 4 фотографий добавлять нельзя");
             if (request.Images == null)
                 return BadRequest();
             if (request.MainImage == null)
