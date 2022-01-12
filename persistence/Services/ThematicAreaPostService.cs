@@ -46,6 +46,22 @@ namespace persistence.Services
             return thematicalAreaPost.ToCreateThematicAreaPostResponse();
         }
 
+        public async Task<int> DeleteByIdAsync(int id)
+        {
+            var thematicalAreaPost = await _context.ThematicAreaPosts.FindAsync(id);
+            if (thematicalAreaPost == null)
+                return default;
+            var imageThematicalAreaPost = await _context.Files.Where(x => x.ThematicAreaPostId == id).ToListAsync();
+            foreach (var image in imageThematicalAreaPost)
+            {
+                _fileService.DeleteFile(image.Path);
+            }
+            _context.Files.RemoveRange(imageThematicalAreaPost);
+            _context.ThematicAreaPosts.Remove(thematicalAreaPost);
+            await _context.SaveChangesAsync();
+            return thematicalAreaPost.Id;
+        }
+
         public async Task<IEnumerable<ThematicAreaPostResponse>> GetAllAsync()
         {
            return await _context.ThematicAreaPosts.Include(x => x.Files).Select(x =>

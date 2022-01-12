@@ -12,5 +12,6 @@ namespace application.Services
         Task<CreateThematicAreaPostResponse> CreateAsync(CreateThematicAreaPostRequest request);
         Task<int> GetAllThematicAreaPostCount();
         Task<IEnumerable<ThematicAreaPostResponse>> GetAllAsync();
+        Task<int> DeleteByIdAsync(int id);
     }
 }

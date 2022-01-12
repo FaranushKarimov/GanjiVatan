@@ -38,7 +38,7 @@ namespace persistence.Services
 
         public void DeleteFile(string folderName)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/" + folderName);
+            var path = Path.GetFullPath( $"wwwroot/" + folderName);
             if(File.Exists(path))
                 File.Delete(path);
            // throw new NotImplementedException();
