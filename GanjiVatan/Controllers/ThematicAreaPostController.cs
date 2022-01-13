@@ -42,5 +42,16 @@ namespace GanjiVatan.Controllers
             var themticalAreaPosts = await _thematicAreaPostService.GetAllAsync();
             return Ok(themticalAreaPosts);
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedIdThematicalPost = await _thematicAreaPostService.DeleteByIdAsync(id);
+            if (deletedIdThematicalPost == 0)
+                return NotFound();
+            return Ok(deletedIdThematicalPost);
+        }
+
+
     }
 }
